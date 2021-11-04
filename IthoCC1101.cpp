@@ -103,19 +103,19 @@ void IthoCC1101::initSendMessage(uint8_t len)
   writeRegister(CC1101_FREQ2 , cc_freq[2]);   //00100001  878MHz-927.8MHz
   writeRegister(CC1101_FREQ1 , cc_freq[1]);   //01100101
   writeRegister(CC1101_FREQ0 , cc_freq[0]);   //01101010
-  writeRegister(CC1101_MDMCFG4 , 0x5A); //difference compared to message1
-  writeRegister(CC1101_MDMCFG3 , 0x83); //difference compared to message1
+  writeRegister(CC1101_MDMCFG4 , 0x5A); //difference compared to message1 // For newer models 0xE8 (> 2011))
+  writeRegister(CC1101_MDMCFG3 , 0x83); //difference compared to message1 // For newer models 0x43 (> 2011))
   writeRegister(CC1101_MDMCFG2 , 0x00); //00000000  2-FSK, no manchester encoding/decoding, no preamble/sync
   writeRegister(CC1101_MDMCFG1 , 0x22); //00100010
   writeRegister(CC1101_MDMCFG0 , 0xF8); //11111000
   writeRegister(CC1101_CHANNR , 0x00);    //00000000
-  writeRegister(CC1101_DEVIATN , 0x50); //difference compared to message1
+  writeRegister(CC1101_DEVIATN , 0x50); //difference compared to message1 // For newer models 0x40 (>2011))
   writeRegister(CC1101_FREND0 , 0x17);    //00010111  use index 7 in PA table
   writeRegister(CC1101_MCSM0 , 0x18);   //00011000  PO timeout Approx. 146microseconds - 171microseconds, Auto calibrate When going from IDLE to RX or TX (or FSTXON)
   writeRegister(CC1101_FSCAL3 , 0xA9);    //10101001
   writeRegister(CC1101_FSCAL2 , 0x2A);    //00101010
   writeRegister(CC1101_FSCAL1 , 0x00);    //00000000
-  writeRegister(CC1101_FSCAL0 , 0x11);    //00010001
+  writeRegister(CC1101_FSCAL0 , 0x11);    //00010001 // For newer models 0x1F (> 2011))
   writeRegister(CC1101_FSTEST , 0x59);    //01011001  For test only. Do not write to this register.
   writeRegister(CC1101_TEST2 , 0x81);   //10000001  For test only. Do not write to this register.
   writeRegister(CC1101_TEST1 , 0x35);   //00110101  For test only. Do not write to this register.
@@ -131,8 +131,8 @@ void IthoCC1101::initSendMessage(uint8_t len)
   writeCommand(CC1101_SIDLE);
   writeCommand(CC1101_SIDLE);
 
-  writeRegister(CC1101_MDMCFG4 , 0x5A); //difference compared to message1
-  writeRegister(CC1101_MDMCFG3 , 0x83); //difference compared to message1
+  writeRegister(CC1101_MDMCFG4 , 0x5A); //difference compared to message1 // For newer models 0xE8 (> 2011))
+  writeRegister(CC1101_MDMCFG3 , 0x83); //difference compared to message1 // For newer models 0x43 (> 2011))
   writeRegister(CC1101_DEVIATN , 0x50); //difference compared to message1
   writeRegister(CC1101_IOCFG0 , 0x2D);    //GDO0_Z_EN_N. When this output is 0, GDO0 is configured as input (for serial TX data).
   writeRegister(CC1101_IOCFG1 , 0x0B);    //Serial Clock. Synchronous to the data in synchronous serial mode.
@@ -140,9 +140,9 @@ void IthoCC1101::initSendMessage(uint8_t len)
   writeCommand(CC1101_STX);
   writeCommand(CC1101_SIDLE);
 
-  writeRegister(CC1101_MDMCFG4 , 0x5A); //difference compared to message1
-  writeRegister(CC1101_MDMCFG3 , 0x83); //difference compared to message1
-  writeRegister(CC1101_DEVIATN , 0x50); //difference compared to message1
+  writeRegister(CC1101_MDMCFG4 , 0x5A); //difference compared to message1 // For newer models 0xE8 (> 2011))
+  writeRegister(CC1101_MDMCFG3 , 0x83); //difference compared to message1 // For newer models 0x43 (> 2011))
+  writeRegister(CC1101_DEVIATN , 0x50); //difference compared to message1 // For newer models 0x40 (>2011))
   //writeRegister(CC1101_IOCFG0 ,0x2D);   //GDO0_Z_EN_N. When this output is 0, GDO0 is configured as input (for serial TX data).
   //writeRegister(CC1101_IOCFG1 ,0x0B);   //Serial Clock. Synchronous to the data in synchronous serial mode.
 
@@ -264,9 +264,9 @@ void  IthoCC1101::initReceiveMessage()
   writeCommand(CC1101_SIDLE); //idle
 
   //set datarate
-  writeRegister(CC1101_MDMCFG4 , 0x6A); // set kBaud
-  writeRegister(CC1101_MDMCFG3 , 0x83); // set kBaud
-  writeRegister(CC1101_DEVIATN , 0x50);
+  writeRegister(CC1101_MDMCFG4 , 0x6A); // set kBaud // For newer models 0xE8 (> 2011))
+  writeRegister(CC1101_MDMCFG3 , 0x83); // set kBaud // For newer models 0x43 (> 2011))
+  writeRegister(CC1101_DEVIATN , 0x50); // For newer models 0x40 (>2011))
 
   //set fifo mode with fixed packet length and sync bytes
   //writeRegister(CC1101_PKTLEN , 63);      //63 bytes message (sync at beginning of message is removed by CC1101)

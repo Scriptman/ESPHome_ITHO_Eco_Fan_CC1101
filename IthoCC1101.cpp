@@ -289,7 +289,7 @@ void  IthoCC1101::initReceiveMessage()
 }
 
 uint8_t IthoCC1101::receivePacket() {
-  return readData(&inMessage, MAX_RAW);
+  return receiveData(&inMessage, MAX_RAW);
 }
 
 bool IthoCC1101::checkForNewPacket() {

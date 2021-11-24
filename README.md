@@ -70,7 +70,9 @@ esphome:
   board: nodemcuv2
   includes: 
     - itho_eco_fan/itho/cc1101.h
-  libraries: 
+  libraries:
+    - SPI
+    - Ticker
     - https://github.com/Scriptman/ESPHome_ITHO_Eco_Fan_CC1101.git
     
   #Set ID from remotes that are used, so you can identify the root of the last State change

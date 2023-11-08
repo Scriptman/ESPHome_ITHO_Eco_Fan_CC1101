@@ -40,7 +40,7 @@ fan:
           {{ "off" if states('sensor.fanspeed') == 'Standby' else "on" }}
         percentage_template: >
           {% set speedperc = {'Standby': 0, 'Low': 33, 'Medium': 66, 'High': 100} %}
-          {{speedperc [states('sensor.fanspeed')]}}
+          {{ speedperc [states('sensor.fanspeed')] | int }}
         turn_on:
           service: switch.turn_on
           data:
